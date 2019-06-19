@@ -13,6 +13,13 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Chromedriver.set_version '2.44'
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
@@ -21,4 +28,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include FactoryBot::Syntax::Methods
+
+  config.before(:each, type: :system) do
+    driven_by(:rack_test)
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by(:selenium_chrome_headless)
+  end
 end
