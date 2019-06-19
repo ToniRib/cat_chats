@@ -25,5 +25,8 @@ module CatChats
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.active_record.schema_format = :sql
+
+    # Set timezone default to mountain time
+    config.time_zone = 'Mountain Time (US & Canada)'
   end
 end
