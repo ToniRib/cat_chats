@@ -11,7 +11,7 @@ class App extends Component {
     messages: [],
   };
 
-  getMessages(conversationId) {
+  getConversation(conversationId) {
     $.ajax({
       method: 'GET',
       url: `/conversation/${conversationId}`,
@@ -21,9 +21,28 @@ class App extends Component {
     });
   }
 
+  postMessage(messageBody) {
+    const { selectedConversation: { id } } = this.state;
+
+    $.ajax({
+      method: 'POST',
+      url: `/conversation/${id}/messages`,
+      dataType: 'json',
+      data: {
+        message: {
+          body: messageBody,
+        }
+      }
+    }).then(({ message }) => {
+      const { messages } = this.state;
+
+      this.setState({ messages: [...messages, message] });
+    });
+  }
+
   selectConversation(conversation) {
     this.setState({ selectedConversation: conversation });
-    this.getMessages(conversation.id);
+    this.getConversation(conversation.id);
   }
 
   render() {
@@ -41,6 +60,7 @@ class App extends Component {
           <Conversation
             displayName={selectedConversation.displayName}
             messages={messages}
+            postMessage={this.postMessage.bind(this)}
           />
         )}
       </div>

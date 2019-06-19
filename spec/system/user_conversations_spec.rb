@@ -46,4 +46,20 @@ RSpec.describe 'User Conversations', js: true do
       expect(page).to have_content 'Hey, captain!'
     end
   end
+
+  it 'allows the user to send a new message to an existing conversation' do
+    visit conversations_path
+
+    within '#conversation-list' do
+      find("#conversation-#{convo_holden_with_naomi.id}").click
+    end
+
+    new_message = 'Do you have time to chat about kittens?'
+    within '#active-conversation' do
+      fill_in 'new-message', with: new_message
+      click_on 'Send'
+    end
+
+    expect(page).to have_content new_message
+  end
 end

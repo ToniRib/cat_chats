@@ -9,7 +9,7 @@ class ConversationsController < ApplicationController
     conversation = current_user.all_conversations.find_by(id: params[:id])
 
     if conversation
-      displayable_messages = DisplayableMessages.for(conversation)
+      displayable_messages = DisplayableMessages.new.for_conversation(conversation)
 
       render json: { messages: displayable_messages }, status: :ok
     else

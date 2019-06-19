@@ -10,23 +10,34 @@ RSpec.describe DisplayableMessages do
   end
   let!(:other_message) { create(:message, user: conversation.sender, body: 'unrelated') }
 
-  describe '.for' do
+  describe '#for_conversation' do
     it 'returns messages for the given conversation' do
-      expect(described_class.for(conversation)).to contain_exactly(
+      expect(subject.for_conversation(conversation)).to contain_exactly(
         a_hash_including(id: second_message.id),
         a_hash_including(id: first_message.id),
       )
     end
 
     it 'returns messages in order of created_at' do
-      expect(described_class.for(conversation)).to match([
+      expect(subject.for_conversation(conversation)).to match([
         a_hash_including(id: first_message.id),
         a_hash_including(id: second_message.id),
       ])
     end
 
     it 'returns messages in a presentable format' do
-      expect(described_class.for(conversation).first).to match({
+      expect(subject.for_conversation(conversation).first).to match({
+        id: first_message.id,
+        displayName: first_message.user.display_name,
+        body: first_message.body,
+        timeSent: anything,
+      })
+    end
+  end
+
+  describe '#single_message' do
+    it 'returns a single message in a presentable format' do
+      expect(subject.single_message(first_message)).to match({
         id: first_message.id,
         displayName: first_message.user.display_name,
         body: first_message.body,
