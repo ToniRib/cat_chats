@@ -2,5 +2,5 @@
   <div>
     <%= button_to 'Sign out', logout_path %>
   </div>
-  <%= react_component("App", user_display_name: current_user.display_name) %>
+  <%= react_component("App", userDisplayName: current_user.display_name, activeConversations: @active_conversations) %>
 </div>

@@ -1,17 +1,27 @@
-import React from "react"
-import PropTypes from "prop-types"
-class App extends React.Component {
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { ConversationList } from './ConversationList';
+import { TopBanner } from './TopBanner';
+
+class App extends Component {
   render() {
-    const { user_display_name } = this.props;
+    const { userDisplayName, activeConversations } = this.props;
 
     return (
-      <div>{`Welcome, ${user_display_name}!`}</div>
+      <div>
+        <TopBanner userDisplayName={userDisplayName}/>
+        <ConversationList activeConversations={activeConversations} />
+      </div>
     );
   }
 }
 
 App.propTypes = {
-  user_display_name: PropTypes.string.isRequired,
+  userDisplayName: PropTypes.string.isRequired,
+};
+
+App.defaultProps = {
+  activeConversations: [],
 };
 
 export default App;

@@ -2,6 +2,7 @@ class ConversationsController < ApplicationController
   before_action :ensure_user_logged_in
 
   def index
+    @active_conversations = UserConversations.for(current_user)
   end
 
   private
