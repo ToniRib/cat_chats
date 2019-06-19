@@ -39,7 +39,7 @@ This app uses ruby 2.6.3, so that must be installed locally for you to run this.
 3. Run `yarn install` to install the JavaScript dependencies
 4. Run `bundle install` to install the Ruby dependences
 5. Run `bundle exec rails db:drop db:create db:migrate db:seed` to blow away any database you might, set up a new one, and seed it with some fun cat-related data.
-6. Run `rails s` to start up the rails server
+6. Run `bundle exec rails s` to start up the rails server
 7. Open the site in Chrome by visiting `localhost:3000`. Sign in as one of the seeded users
 8. Open an incognito window in Chrome and visit `localhost:3000`. Sign in as a user who has an active conversation with your first signed in user.
 9. Chat! Cat topics preferred.
