@@ -29,7 +29,7 @@ class ConversationList extends Component {
 
   render() {
     return (
-      <div id="conversation-list">
+      <div id="conversation-list" className="col-sm-4">
         <h3>Active Conversations</h3>
         {this.renderConversations()}
       </div>

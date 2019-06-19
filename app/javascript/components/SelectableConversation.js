@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SelectableConversation = ({ id, displayName, onClick }) => {
   return (
-    <div id={`conversation-${id}`} onClick={onClick}>
+    <div id={`conversation-${id}`} className="selectable-conversation" onClick={onClick}>
       {displayName}
     </div>
   );

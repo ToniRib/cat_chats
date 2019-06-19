@@ -60,17 +60,19 @@ class App extends Component {
     return (
       <div>
         <TopBanner userDisplayName={userDisplayName}/>
-        <ConversationList
-          activeConversations={activeConversations}
-          selectConversation={this.selectConversation.bind(this)}
-        />
-        {selectedConversation && (
-          <Conversation
-            displayName={selectedConversation.displayName}
-            messages={messages}
-            postMessage={this.postMessage.bind(this)}
+        <div className="row">
+          <ConversationList
+            activeConversations={activeConversations}
+            selectConversation={this.selectConversation.bind(this)}
           />
-        )}
+          {selectedConversation && (
+            <Conversation
+              displayName={selectedConversation.displayName}
+              messages={messages}
+              postMessage={this.postMessage.bind(this)}
+            />
+          )}
+        </div>
       </div>
     );
   }

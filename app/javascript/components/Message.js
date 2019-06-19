@@ -5,7 +5,7 @@ const Message = ({ id, displayName, body, timeSent }) => {
   return (
     <div id={`message-${id}`}>
       <p>
-        <span>{displayName} ({timeSent}): </span>
+        <span><strong>{displayName}</strong> ({timeSent}): </span>
         {body}
       </p>
     </div>

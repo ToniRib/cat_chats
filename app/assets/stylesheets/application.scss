@@ -24,3 +24,11 @@
 .sign-out-button {
   margin-top: 10px;
 }
+
+.selectable-conversation {
+  color: dodgerblue;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

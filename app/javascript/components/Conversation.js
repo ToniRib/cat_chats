@@ -25,7 +25,7 @@ class Conversation extends Component {
     const { newMessage } = this.state;
 
     return (
-      <div id="active-conversation">
+      <div id="active-conversation"  className="col-sm-8">
         <h4>{displayName}</h4>
         {messages.map(message => (
           <Message
