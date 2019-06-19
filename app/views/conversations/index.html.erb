@@ -1,3 +1,6 @@
 <div id="cat-chat-app">
+  <div>
+    <%= button_to 'Sign out', logout_path %>
+  </div>
   <%= react_component("App", user_display_name: current_user.display_name) %>
 </div>

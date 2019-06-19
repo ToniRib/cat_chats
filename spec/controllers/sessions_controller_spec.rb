@@ -30,4 +30,12 @@ RSpec.describe SessionsController do
       end
     end
   end
+
+  describe 'POST #destroy' do
+    it 'redirects to root' do
+      post :destroy
+
+      expect(response).to redirect_to root_path
+    end
+  end
 end
