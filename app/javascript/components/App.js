@@ -11,6 +11,14 @@ class App extends Component {
     messages: [],
   };
 
+  componentDidMount() {
+    setInterval(() => {
+      const { selectedConversation } = this.state;
+
+      if (selectedConversation) this.getConversation(selectedConversation.id);
+    }, 1000);
+  }
+
   getConversation(conversationId) {
     $.ajax({
       method: 'GET',
