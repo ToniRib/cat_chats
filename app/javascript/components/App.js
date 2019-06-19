@@ -3,18 +3,31 @@ import PropTypes from 'prop-types';
 import { ConversationList } from './ConversationList';
 import { Conversation } from './Conversation';
 import { TopBanner } from './TopBanner';
+import $ from 'jquery';
 
 class App extends Component {
   state = {
     selectedConversation: undefined,
+    messages: [],
   };
+
+  getMessages(conversationId) {
+    $.ajax({
+      method: 'GET',
+      url: `/conversation/${conversationId}`,
+      dataType: 'json',
+    }).then(({ messages }) => {
+      this.setState({ messages: messages });
+    });
+  }
 
   selectConversation(conversation) {
     this.setState({ selectedConversation: conversation });
+    this.getMessages(conversation.id);
   }
 
   render() {
-    const { selectedConversation } = this.state;
+    const { selectedConversation, messages } = this.state;
     const { userDisplayName, activeConversations } = this.props;
 
     return (
@@ -26,8 +39,8 @@ class App extends Component {
         />
         {selectedConversation && (
           <Conversation
-            id={selectedConversation.id}
             displayName={selectedConversation.displayName}
+            messages={messages}
           />
         )}
       </div>

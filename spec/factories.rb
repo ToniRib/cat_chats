@@ -10,4 +10,10 @@ FactoryBot.define do
     sender
     receiver
   end
+
+  factory :message do
+    user
+    conversation
+    body { "The enemy's gate is down." }
+  end
 end

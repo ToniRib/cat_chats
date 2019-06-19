@@ -16,6 +16,8 @@ RSpec.describe 'User Conversations', js: true do
   let!(:convo_holden_with_naomi) { create(:conversation, sender: holden, receiver: naomi) }
   let!(:convo_amos_with_holden) { create(:conversation, sender: amos, receiver: holden) }
   let!(:convo_amos_with_alex) { create(:conversation, sender: amos, receiver: alex) }
+  let!(:message_to_naomi) { create(:message, user: holden, conversation: convo_holden_with_naomi, body: 'Hi, there XO!')}
+  let!(:message_from_naomi) { create(:message, user: naomi, conversation: convo_holden_with_naomi, body: 'Hey, captain!')}
 
   before do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return holden
@@ -40,7 +42,8 @@ RSpec.describe 'User Conversations', js: true do
     end
 
     within '#active-conversation' do
-      expect(page).to have_content 'Naomi Nagata'
+      expect(page).to have_content 'Hi, there XO!'
+      expect(page).to have_content 'Hey, captain!'
     end
   end
 end

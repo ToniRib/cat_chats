@@ -5,6 +5,18 @@ class ConversationsController < ApplicationController
     @active_conversations = UserConversations.for(current_user)
   end
 
+  def show
+    conversation = current_user.all_conversations.find_by(id: params[:id])
+
+    if conversation
+      displayable_messages = DisplayableMessages.for(conversation)
+
+      render json: { messages: displayable_messages }, status: :ok
+    else
+      render json: { messages: [] }, status: :not_found
+    end
+  end
+
   private
 
   def ensure_user_logged_in

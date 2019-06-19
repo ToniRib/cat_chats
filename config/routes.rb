@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   get '/conversations', to: 'conversations#index'
+  get '/conversation/:id', to: 'conversations#show'
 end
