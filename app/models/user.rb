@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def display_name
     "#{first_name} #{last_name}"
   end
+
+  def all_conversations
+    Conversation.where('sender_id = ? OR receiver_id = ?', id, id)
+  end
 end

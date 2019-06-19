@@ -51,4 +51,34 @@ RSpec.describe User do
       expect(user.display_name).to eq 'Julia Wicker'
     end
   end
+
+  describe '#all_conversations' do
+    let(:eliot) { create(:user, username: 'eliot') }
+
+    subject { create(:user, username: 'janet' ) }
+
+    context 'when user is the sender' do
+      it 'includes conversation' do
+        conversation = create(:conversation, sender: subject, receiver: eliot)
+
+        expect(subject.all_conversations).to include conversation
+      end
+    end
+
+    context 'when user is the receiver' do
+      it 'includes conversation' do
+        conversation = create(:conversation, sender: eliot, receiver: subject)
+
+        expect(subject.all_conversations).to include conversation
+      end
+    end
+
+    context 'when user is neither sender nor receiver' do
+      it 'excludes conversation' do
+        conversation = create(:conversation, sender: eliot, receiver: create(:user))
+
+        expect(subject.all_conversations).not_to include conversation
+      end
+    end
+  end
 end
