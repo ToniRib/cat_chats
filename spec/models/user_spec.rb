@@ -43,4 +43,12 @@ describe User do
       expect(user).to be_valid
     end
   end
+
+  describe '#display_name' do
+    it 'returns the first and last name' do
+      user = create(:user, first_name: 'Julia', last_name: 'Wicker')
+
+      expect(user.display_name).to eq 'Julia Wicker'
+    end
+  end
 end
