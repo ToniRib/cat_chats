@@ -20,13 +20,17 @@ class Conversation extends Component {
     this.setState({ newMessage: '' });
   }
 
+  handleKeyPress(e) {
+    if (e.charCode === 13) this.handleSend();
+  }
+
   render() {
     const { displayName, messages } = this.props;
     const { newMessage } = this.state;
 
     return (
       <div id="active-conversation"  className="col-sm-8">
-        <h4>{displayName}</h4>
+        <h4>Conversation with {displayName}</h4>
         {messages.map(message => (
           <Message
             key={message.id}
@@ -36,8 +40,23 @@ class Conversation extends Component {
             timeSent={message.timeSent}
           />)
         )}
-        <textarea id="new-message" value={newMessage} onChange={this.updateNewMessageValue.bind(this)} />
-        <button onClick={this.handleSend.bind(this)}>Send</button>
+        <div className="row">
+          <div className="col-sm-12">
+            <textarea
+              id="new-message"
+              className="new-message-textarea"
+              value={newMessage}
+              onChange={this.updateNewMessageValue.bind(this)}
+              onKeyPress={this.handleKeyPress.bind(this)}
+            />
+            <button
+              onClick={this.handleSend.bind(this)}
+              className="btn btn-sm btn-success send-message"
+            >
+              Send
+            </button>
+          </div>
+        </div>
       </div>
     )
   }
