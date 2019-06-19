@@ -1,21 +1,31 @@
-<div>
-  <div class="flash-container">
+<div class="row welcome-page">
+  <div class="col-sm-12">
+    <div class="row">
+      <img class="cat-logo" src="https://making-the-web.com/sites/default/files/clipart/149179/cat-head-outline-149179-8813506.jpg"/>
+    </div>
+    <div class="row">
+      <h1>Welcome to Cat Chats!</h1>
+      <p>Your place to chat with others about cute cats. Because that's what the internet is really for.</p>
+    </div>
+  </div>
+
+  <div class="flash-container col-sm-12">
     <% flash.each do |type, message| %>
       <%= content_tag :div, sanitize(message), class: "flash-#{type}" %>
     <% end %>
   </div>
 
   <%= form_for :session, url: login_path do |f| %>
-    <div>
+    <div class="form-row">
       <%= f.label :username %>
       <%= f.text_field :username, required: true %>
     </div>
-    <div>
+    <div class="form-row">
       <%= f.label :password %>
       <%= f.password_field :password, required: true %>
     </div>
     <div>
-      <%= f.submit "Log In" %>
+      <%= f.submit "Log In", class: "btn btn-success" %>
     </div>
   <% end %>
 </div>

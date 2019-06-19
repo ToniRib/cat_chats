@@ -1,6 +1,13 @@
 <div id="cat-chat-app">
-  <div>
-    <%= button_to 'Sign out', logout_path %>
+  <div class="row">
+    <div class="col-sm-8">
+      <img class="cat-logo-header" src="https://making-the-web.com/sites/default/files/clipart/149179/cat-head-outline-149179-8813506.jpg"/>
+      <span>Cat Chats</span>
+    </div>
+    <div class="col-sm-4">
+      <%= button_to 'Sign out', logout_path, class: 'sign-out-button btn btn-primary btn-sm' %>
+    </div>
   </div>
+
   <%= react_component("App", userDisplayName: current_user.display_name, activeConversations: @active_conversations) %>
 </div>

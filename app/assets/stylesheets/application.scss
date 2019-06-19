@@ -1,0 +1,26 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.welcome-page {
+  text-align: center;
+}
+
+.cat-logo {
+  height: 200px;
+}
+
+.cat-logo-header {
+  height: 50px;
+}
+
+.flash-error {
+  background-color: #f78f8f;
+}
+
+.form-row {
+  margin-bottom: 10px;
+}
+
+.sign-out-button {
+  margin-top: 10px;
+}
