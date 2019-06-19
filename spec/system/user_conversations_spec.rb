@@ -31,4 +31,16 @@ RSpec.describe 'User Conversations', js: true do
       expect(page).not_to have_content 'Alex Kamal'
     end
   end
+
+  it 'allows the user to select a conversation' do
+    visit conversations_path
+
+    within '#conversation-list' do
+      find("#conversation-#{convo_holden_with_naomi.id}").click
+    end
+
+    within '#active-conversation' do
+      expect(page).to have_content 'Naomi Nagata'
+    end
+  end
 end

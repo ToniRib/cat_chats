@@ -13,6 +13,7 @@ class ConversationList extends Component {
 
   renderConversations() {
     const { activeConversations } = this.state;
+    const { selectConversation } = this.props;
 
     return activeConversations.map(conversation => {
       return (
@@ -20,13 +21,13 @@ class ConversationList extends Component {
           key={conversation.id}
           id={conversation.id}
           displayName={conversation.displayName}
+          onClick={() => selectConversation(conversation)}
         />
       )
     });
   }
 
   render() {
-
     return (
       <div id="conversation-list">
         <h3>Active Conversations</h3>
@@ -38,6 +39,7 @@ class ConversationList extends Component {
 
 ConversationList.propTypes = {
   activeConversations: PropTypes.array,
+  selectConversation: PropTypes.func.isRequired,
 };
 
 ConversationList.defaultProps = {
