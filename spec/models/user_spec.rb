@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+RSpec.describe User do
   context 'when username has been taken' do
     let(:username) { 'jamesholden' }
     let(:copycat_user) do
